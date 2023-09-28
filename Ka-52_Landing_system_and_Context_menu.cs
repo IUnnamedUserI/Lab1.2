@@ -139,15 +139,9 @@ string GetAntennaData(string Data)
     return "Data not found";
 }
 
-double GetDistance(Vector3D Point)
-{
-    return (Cockpit.CenterOfMass - Point).Length();
-}
+double GetDistance(Vector3D Point) { return (Cockpit.CenterOfMass - Point).Length(); }
 
-double GetDistance(LandingArea Area)
-{
-    return (Cockpit.CenterOfMass - Area.LandingVector).Length();
-}
+double GetDistance(LandingArea Area) { return (Cockpit.CenterOfMass - Area.LandingVector).Length(); }
 
 double GetAngleBetweenVectors(Vector3D ForwardVector, Vector3D RightVector, Vector3D EntityVector)
 {
@@ -207,27 +201,21 @@ void ButtonClick(Button Object_Button)
             else foreach (IMyInteriorLight Object_Light in LandingLightList) Object_Light.Enabled = false;
             break;
 
-        case "Stels":
-            Stels(!IsStels);
-            break;
+        case "Stels": Stels(!IsStels); break;
 
         case "Instructor":
             CurrentMenu = InstructorMenu;
             PrevMenu = Control;
             break;
-        case "OnOffInstructor":
-            ChangeParam("Инструктор");
-            break;
+
+        case "OnOffInstructor": ChangeParam("Инструктор"); break;
     }
 }
 
 void ShowMenu(ContextMenu Menu)
 {
     ContextScreen.ContentType = ContentType.NONE; ContextScreen.ContentType = ContentType.SCRIPT;
-    using (MySpriteDrawFrame Frame = ContextScreen.DrawFrame())
-    {
-        Frame.AddRange(Menu.DrawMenu());
-    }
+    using (MySpriteDrawFrame Frame = ContextScreen.DrawFrame()) { Frame.AddRange(Menu.DrawMenu()); }
 }
 
 void DrawContextMenu(string ControlName)
