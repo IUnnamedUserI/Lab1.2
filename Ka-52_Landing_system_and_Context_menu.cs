@@ -11,7 +11,7 @@ IMyRadioAntenna Antenna;
 Vector2 CenterScreen;
 LandingArea CurrentLandingArea;
 int Counter = 0;
-ContextMenu PrevMenu, CurrentMenu, Control, InstructorMenu;
+ContextMenu PrevMenu, CurrentMenu, Control, InstructorMenu, GPSMenu;
 bool IsLandingChassis = true;
 bool IsStels = false;
 
@@ -236,6 +236,7 @@ void DrawContextMenu(string ControlName)
     {
         case "Управление": ShowMenu(Control); break;
         case "Инструктор": ShowMenu(InstructorMenu); break;
+        case "GPS": ShowMenu(GPSMenu); break;
         default: ShowMenu(Control); break;
     }
     ContextMenu Menu = new ContextMenu();
@@ -259,6 +260,14 @@ void CreateInstructorScreen()
     InstructorMenu.CreateButton("Удержание горизонта", "Horizon");
     InstructorMenu.CreateButton("Гаситель скорости", "SpeedDumpeners");
     InstructorMenu.CreateButton("Помощ. прицеливания", "AimAssist");
+}
+
+void CreateGPSScreen()
+{
+    GPSMenu = new ContextMenu("GPS");
+    GPSMenu.CreateButton("< Назад", "Back");
+    GPSMenu.CreateButton("Список точек", "StaticLandingAreaList");
+    GPSMenu.CraeteButton("Добавить точку", "CreateNewLandingArea");
 }
 
 void Stels(bool StelsEnabled)
